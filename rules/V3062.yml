@@ -1,0 +1,11 @@
+---
+severity: 1
+desc: passwords must be encrypted
+check:
+  text: service\s+password-encryption
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: SNMP trap source interface OOBM/loopback
+check:
+  text: snmp-server\s+trap-source
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

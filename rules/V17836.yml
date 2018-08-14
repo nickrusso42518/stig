@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: Mgmt traffic must have QoS marking
+check:
+  text: service-policy\s+input
+  text_cnt: 1
+  parent: ^interface\s+Ethernet0/3
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: aux port exec disabled
+check:
+  text: no\s+exec
+  text_cnt: 1
+  parent: ^line\s+aux
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

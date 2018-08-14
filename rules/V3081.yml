@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: IP source routing must be disabled
+check:
+  text: no\s+ip\s+source-route
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

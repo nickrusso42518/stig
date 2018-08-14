@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Deny ICMP fragments inbound
+check:
+  text: deny\s+icmp\s+any\s+any\s+fragments\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL_IN
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

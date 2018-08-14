@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SSH authentication attempts is 3 (retries is 2)
+check:
+  text: ip\s+ssh\s+authentication-retries\s+2
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

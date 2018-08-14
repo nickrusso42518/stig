@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: NTP clients must authenticate servers
+check:
+  text: ntp\s+authenticate
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

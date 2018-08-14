@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Egress perimeter ACL must be applied
+check:
+  text: ip\s+access-group\s+ACL_EXTERNAL_OUT\s+out
+  text_cnt: 1
+  parent: ^interface\s+Serial1/0
+  when: ip\s+address\s+\S+
+part_of_stig:
+  - l3ir
+  - l3pr

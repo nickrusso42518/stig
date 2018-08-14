@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SNMP disabled on external interfaces
+check:
+  text: deny\s+udp\s+any\s+any\s+range\s+snmp\s+snmptrap\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: TFTP source interface OOBM/loopback
+check:
+  text: ip\s+tftp\s+source-interface
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

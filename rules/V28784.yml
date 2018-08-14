@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: service call-home disabled
+check:
+  text: service\s+call-home
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

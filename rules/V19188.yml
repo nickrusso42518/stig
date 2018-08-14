@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: control plane policing in/out is enabled
+check:
+  text: service-policy.*put\s+
+  text_cnt: 2
+  parent: ^control-plane
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

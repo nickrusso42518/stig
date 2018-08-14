@@ -1,0 +1,11 @@
+---
+severity: 1
+desc: Cannot use SNMPv2c strings "public" or "private"
+check:
+  text: ^snmp-server\s+community\s+(public|private)
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

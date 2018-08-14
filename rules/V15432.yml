@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Two AAA servers defined
+check:
+  text: ^(radius|tacacs)\s+server
+  text_cnt: 2
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

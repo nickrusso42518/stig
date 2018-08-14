@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: ICMP redirects disabled on Ethernet interfaces
+check:
+  text: no\s+ip\s+redirects
+  text_cnt: 1
+  parent: ^interface.*?Ethernet
+  when: ip\s+address\s+\S+
+part_of_stig:
+  - l3ir
+  - l3pr

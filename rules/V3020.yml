@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: DNS lookups disabled
+check:
+  text: no\s+ip\s+domain\s+lookup
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

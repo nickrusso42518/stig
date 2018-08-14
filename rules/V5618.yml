@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: gratuitous ARP disabled
+check:
+  text: ip\s+arp\s+gratuitous\s+none
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

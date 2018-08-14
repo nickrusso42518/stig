@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: iBGP neighbors must source sessions from loopback
+check:
+  text: neighbor.*update-source\s+Loopback
+  text_cnt: 1  # varies depending on neighbor count
+  parent: ^router\s+bgp\s+100
+  when: neighbor.*remote-as\s+100
+part_of_stig:
+  - l3ir
+  - l3pr

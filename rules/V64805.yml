@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: disable MOP for DECnet
+check:
+  text: no\s+mop\s+enabled
+  text_cnt: 1
+  parent: ^interface\s+\S*?Ethernet
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

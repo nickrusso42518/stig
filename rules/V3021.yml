@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SNMPv3 group ACL protection
+check:
+  text: snmp-server\s+group.*access
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

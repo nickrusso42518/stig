@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SNMP read access only (write absent)
+check:
+  text: snmp-server.*write
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

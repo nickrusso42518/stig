@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Deny all other ICMP in on external
+check:
+  text: deny\s+icmp\s+any\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL_IN
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

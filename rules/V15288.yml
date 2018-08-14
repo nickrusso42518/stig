@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: No ISATAP tunnel termination
+check:
+  text: tunnel\s+mode\s+ipv6\s+isatap
+  text_cnt: 0
+  parent: ^interface\s+Tunnel
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

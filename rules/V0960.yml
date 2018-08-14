@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: TCP intercept is configured
+check:
+  text: ^ip\s+tcp\s+intercept
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

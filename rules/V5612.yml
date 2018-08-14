@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SSH timeout at 60 seconds (exactly)
+check:
+  text: ip\s+ssh\s+timeout\s+60
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

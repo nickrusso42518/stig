@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: BSDr commands disabled
+check:
+  text: ip\s+rcmd
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: BOOTP server disabled
+check:
+  text: no\s+ip\s+bootp\s+server
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

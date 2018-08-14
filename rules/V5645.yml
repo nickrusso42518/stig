@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: CEF enabled
+check:
+  text: ip\s+cef
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

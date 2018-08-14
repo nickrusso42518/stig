@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: TCP keepalives in/out enabled
+check:
+  text: service\s+tcp-keepalives
+  text_cnt: 2
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

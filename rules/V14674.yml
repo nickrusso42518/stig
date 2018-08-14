@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: NTP source interface OOBM/loopback
+check:
+  text: ntp\s+source
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

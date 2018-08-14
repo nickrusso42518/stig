@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: SNMPv3 groups for read access
+check:
+  text: snmp-server.*v3.*read
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

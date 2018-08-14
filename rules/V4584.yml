@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: syslog enabled
+check:
+  text: logging\s+host
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

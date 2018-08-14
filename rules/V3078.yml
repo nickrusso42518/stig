@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: TCP/UDP small servers must be disabled
+check:
+  text: service.*?small-servers
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr

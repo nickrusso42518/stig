@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: directed bcast disabled on all Ethernet interfaces
+check:
+  text: ip\s+directed\s+broadcast
+  text_cnt: 0
+  parent: ^interface\s+\S*?Ethernet
+  when: ip\s+address\s+\S+
+part_of_stig:
+  - l3ir
+  - l3pr

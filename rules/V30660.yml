@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Deny 6to4 packets IPP 41
+check:
+  text: deny\s+41\s+any\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr
