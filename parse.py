@@ -1,36 +1,30 @@
-from ciscoconfparse import CiscoConfParse
-import os
+from os import path
+from glob import glob
+import sys
 import yaml
-import glob
+from ciscoconfparse import CiscoConfParse
 
-def test_result(rule, result, brief=True):
+def print_rule_result(rule_data, rule_result, brief=True):
     if brief:
-        #print('{0: <10} {1: <60} {2}'.format('vuln id', 'description', 'pass'))
-        print('{0: <10} {1: <60} {2}'.format(rule['vuln_id'], rule['desc'], result['success']))
+        print('{0: <10} {1: <62} {2}'.format(
+            rule_data['vuln_id'], rule_data['desc'], rule_result['success']))
     else:
         print('----------------------------------------------------------')
-        print('Vuln ID:     {}'.format(rule['vuln_id']))
-        print('Severity:    {}'.format(rule['severity']))
-        print('Description: {}'.format(rule['desc']))
-        if result['iter']:
-            print('Passing objects:')
-            for obj in result['iter']['pass']:
+        print('Vuln ID:     {}'.format(rule_data['vuln_id']))
+        print('Severity:    {}'.format(rule_data['severity']))
+        print('Description: {}'.format(rule_data['desc']))
+        for k, v in rule_result['iter'].items():
+            print('{0} objects:'.format(k))
+            for obj in v:
                 print('  - {}'.format(obj.text))
-            print('Failing objects:')
-            for obj in result['iter']['fail']:
-                print('  - {}'.format(obj.text))
-            print('N/A objects:')
-            for obj in result['iter']['na']:
-                print('  - {}'.format(obj.text))
-        print('Success: {}'.format(result['success']))
-    
-def check(rule):
-    if rule['check']['parent']:
-        return _check_hier(rule)
-    else:
-        return _check_global(rule) 
+        print('Success:     {}'.format(rule_result['success']))
 
-def _check_global(rule):
+def check(parse, rule):
+    if rule['check']['parent']:
+        return _check_hier(parse, rule)
+    return _check_global(parse, rule)
+
+def _check_global(parse, rule):
     objs = parse.find_objects(rule['check']['text'])
     success = len(objs) == rule['check']['text_cnt']
     if success:
@@ -41,7 +35,7 @@ def _check_global(rule):
         pass_objs = []
     return {'success': success, 'iter': {'pass': pass_objs, 'fail': fail_objs, 'na': []}}
 
-def _check_hier(rule):
+def _check_hier(parse, rule):
     pass_objs = []
     fail_objs = []
     na_objs = []
@@ -59,42 +53,22 @@ def _check_hier(rule):
 
     #  TODO: should that really be >= instead of just > ?? think isatap absence
     success = len(pass_objs) >= 0 and len(fail_objs) == 0
-    return {'iter': {'pass': pass_objs, 'fail': fail_objs, 'na': na_objs}, 'success': success }
+    return {'iter':{'pass': pass_objs, 'fail': fail_objs, 'na': na_objs}, 'success': success}
 
-def dump_ioscfgline(ioscfgline):
-    print('text:         {}'.format(ioscfgline.text))
-    print('linenum:      {}'.format(ioscfgline.linenum))
+def main(argv):
+    brief = int(argv[1]) == 1 if len(argv) > 1 else True
+    parse = CiscoConfParse('test.txt')
+    rule_files = sorted(glob('rules/*.yml'))
+    for rule_file in rule_files:
+        with open(rule_file, 'r') as stream:
+            try:
+                rule_data = yaml.safe_load(stream)
+                vuln_str = path.basename(rule_file).split('.')[0]
+                rule_data.update({'vuln_id': vuln_str})
+                rule_result = check(parse, rule_data)
+                print_rule_result(rule_data, rule_result, brief=brief)
+            except yaml.YAMLError as exc:
+                print(exc)
 
-    if ioscfgline == ioscfgline.parent:
-        parent = 'none'
-    else:
-        parent = ioscfgline.parent
-    print('parent:       {}'.format(parent))
-    print('child_indent: {}'.format(ioscfgline.child_indent))
-    print('indent:       {}'.format(ioscfgline.indent))
-    print('is_comment:   {}'.format(ioscfgline.is_comment))
-    print('children:')
-    for c in ioscfgline.children:
-        print('  - {}'.format(c))
-
-parse = CiscoConfParse('test.txt')
-#interfaces = parse.find_objects('^ntp')
-#for i in interfaces:
-#    dump_ioscfgline(i)
-
-#rid = parse.find_objects('router-id')
-#for r in rid:
-#    dump_ioscfgline(r)
-
-rule_list = []
-rules = sorted(glob.glob('rules/*.yml'))
-for rule in rules:
-    with open(rule, 'r') as stream:
-        try:
-            data = yaml.safe_load(stream)
-            data.update({'vuln_id': os.path.basename(rule).split('.')[0]})
-            rule_list.append(data)
-            d = check(data)
-            test_result(data, d)
-        except yaml.YAMLError as exc:
-            print(exc)
+if __name__ == '__main__':
+    main(sys.argv)
