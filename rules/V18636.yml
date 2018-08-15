@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: No automatic tunnel destinations
+check:
+  text: tunnel\s+destination\s+\S+
+  text_cnt: 1
+  parent: ^interface\s+Tunnel\d+
+  when: tunnel\s+source\s+\S+
+part_of_stig:
+  - l3pr
+  - l3ps

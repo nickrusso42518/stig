@@ -1,0 +1,13 @@
+---
+severity: 2
+desc: L2TPv3 sessions need authentication
+check:
+  text: authentication$
+  text_cnt: 1
+  parent: ^l2tp-class\s+\S+
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+  - l3is
+  - l3ir
