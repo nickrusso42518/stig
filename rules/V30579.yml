@@ -5,7 +5,7 @@ check:
   text: ip\s+multicast\s+boundary
   text_cnt: 1
   parent: ^interface\s+Serial1/0
-  when: ip\s+pim
+  when: ip\s+pim\s+\S+mode$
 part_of_stig:
   - l3ps
   - l3pr

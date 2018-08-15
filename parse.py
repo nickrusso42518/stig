@@ -26,13 +26,14 @@ def check(parse, rule):
 
 def _check_global(parse, rule):
     objs = parse.find_objects(rule['check']['text'])
-    success = len(objs) == rule['check']['text_cnt']
-    if success:
+    if len(objs) == rule['check']['text_cnt']:
+        success = 'PASS'
         pass_objs = objs
         fail_objs = []
     else:
-        fail_objs = objs
+        success = 'FAIL'
         pass_objs = []
+        fail_objs = objs
     return {'success': success, 'iter': {'pass': pass_objs, 'fail': fail_objs, 'na': []}}
 
 def _check_hier(parse, rule):
@@ -51,8 +52,12 @@ def _check_hier(parse, rule):
         else:
             na_objs.append(parent)
 
-    #  TODO: should that really be >= instead of just > ?? think isatap absence
-    success = len(pass_objs) >= 0 and len(fail_objs) == 0
+    if fail_objs:
+        success = 'FAIL'
+    elif na_objs and not pass_objs:
+        success = 'N/A'
+    else:
+        success = 'PASS'
     return {'iter':{'pass': pass_objs, 'fail': fail_objs, 'na': na_objs}, 'success': success}
 
 def main(argv):
