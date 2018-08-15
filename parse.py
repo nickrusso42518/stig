@@ -1,14 +1,14 @@
 from os import path
 from glob import glob
-import sys
+import argparse
 import yaml
 from ciscoconfparse import CiscoConfParse
 
-def print_rule_result(rule_data, rule_result, brief=True):
-    if brief:
+def print_rule_result(rule_data, rule_result, verbosity=0):
+    if verbosity == 0:
         print('{0: <10} {1: <62} {2}'.format(
             rule_data['vuln_id'], rule_data['desc'], rule_result['success']))
-    else:
+    elif verbosity == 1:
         print('----------------------------------------------------------------------')
         print('Vuln ID:     {}'.format(rule_data['vuln_id']))
         print('Severity:    {}'.format(rule_data['severity']))
@@ -18,6 +18,13 @@ def print_rule_result(rule_data, rule_result, brief=True):
             for obj in v:
                 print('  - {}'.format(obj.text))
         print('Success:     {}'.format(rule_result['success']))
+    elif verbosity == 2:
+        csv_str = '{0},{1},{2},{3}'.format(
+            rule_data['vuln_id'], rule_data['severity'], rule_data['desc'], rule_result['success'])
+        for k, v in rule_result['iter'].items():
+            str_list = [line.text for line in v]
+            csv_str += ',' + '~'.join(str_list)
+        print(csv_str)
 
 def check(parse, rule):
     if rule['check']['parent']:
@@ -60,10 +67,17 @@ def _check_hier(parse, rule):
         success = 'PASS'
     return {'iter':{'pass': pass_objs, 'fail': fail_objs, 'na': na_objs}, 'success': success}
 
-def main(argv):
-    input_file = argv[1]
-    brief = int(argv[2]) == 1 if len(argv) > 2 else True
-    parse = CiscoConfParse(input_file)
+def process_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('config_file', help='configuration text file to scan',
+                        type=str)
+    parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
+                        help="0 for brief, 1 for details, 2 for CSV rows", default=0)
+    return parser.parse_args()
+
+def main():
+    args = process_args()
+    parse = CiscoConfParse(args.config_file)
     stig_objs = parse.find_objects(r'!@#stig:\S+')
     stigs = [obj.text.split(':')[1] for obj in stig_objs]
     rule_files = sorted(glob('rules/*.yml'))
@@ -81,7 +95,7 @@ def main(argv):
             vuln_str = path.basename(rule_file).split('.')[0]
             rule_data.update({'vuln_id': vuln_str})
             rule_result = check(parse, rule_data)
-            print_rule_result(rule_data, rule_result, brief=brief)
+            print_rule_result(rule_data, rule_result, verbosity=args.verbosity)
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
