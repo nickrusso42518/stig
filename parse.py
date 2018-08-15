@@ -56,19 +56,27 @@ def _check_hier(parse, rule):
     return {'iter':{'pass': pass_objs, 'fail': fail_objs, 'na': na_objs}, 'success': success}
 
 def main(argv):
-    brief = int(argv[1]) == 1 if len(argv) > 1 else True
-    parse = CiscoConfParse('test.txt')
+    input_file = argv[1]
+    brief = int(argv[2]) == 1 if len(argv) > 2 else True
+    parse = CiscoConfParse(input_file)
+    stig_objs = parse.find_objects('!@#stig:\S+')
+    stigs = [obj.text.split(':')[1] for obj in stig_objs]
     rule_files = sorted(glob('rules/*.yml'))
     for rule_file in rule_files:
         with open(rule_file, 'r') as stream:
             try:
                 rule_data = yaml.safe_load(stream)
-                vuln_str = path.basename(rule_file).split('.')[0]
-                rule_data.update({'vuln_id': vuln_str})
-                rule_result = check(parse, rule_data)
-                print_rule_result(rule_data, rule_result, brief=brief)
             except yaml.YAMLError as exc:
                 print(exc)
+
+            # Find out if the rule is needed
+            overlap = [v for v in stigs if v in rule_data['part_of_stig']]
+            if not overlap:
+                continue
+            vuln_str = path.basename(rule_file).split('.')[0]
+            rule_data.update({'vuln_id': vuln_str})
+            rule_result = check(parse, rule_data)
+            print_rule_result(rule_data, rule_result, brief=brief)
 
 if __name__ == '__main__':
     main(sys.argv)
