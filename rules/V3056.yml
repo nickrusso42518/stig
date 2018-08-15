@@ -1,0 +1,14 @@
+---
+severity: 2
+desc: No group accounts (V3966 copy)
+check:
+  text: ^username
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr
+  - l3is
+  - l3ps
+  - l2as

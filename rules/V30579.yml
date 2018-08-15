@@ -7,5 +7,5 @@ check:
   parent: ^interface\s+Serial1/0
   when: ip\s+pim
 part_of_stig:
-  - l3ir
+  - l3ps
   - l3pr

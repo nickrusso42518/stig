@@ -1,0 +1,13 @@
+---
+severity: 3
+desc: admin/site local multicast scoping
+check:
+  text: ip\s+multicast\s+boundary
+  text_cnt: 1
+  parent: ^interface\s+Serial1/0
+  when: ip\s+pim
+part_of_stig:
+  - l3ps
+  - l3pr
+  - l3is
+  - l3ir

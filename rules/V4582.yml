@@ -1,0 +1,14 @@
+---
+severity: 1
+desc: console must have login authc configured
+check:
+  text: login\s+authentication
+  text_cnt: 1
+  parent: ^line\s+con
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr
+  - l3is
+  - l3ps
+  - l2as

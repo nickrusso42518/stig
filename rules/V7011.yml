@@ -6,6 +6,6 @@ check:
   text_cnt: 1
   parent: ^line\s+aux
   when: true
-part_of_stig:
+part_of_stig:  # switches don't have aux ports
   - l3ir
   - l3pr

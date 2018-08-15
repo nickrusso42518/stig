@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: VLAN 1 cannot be used for mgmt
+check:
+  text: no\s+ip\s+address
+  text_cnt: 1
+  parent: ^interface\s+Vlan1$
+  when: true
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps

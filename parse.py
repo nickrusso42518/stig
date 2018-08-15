@@ -9,7 +9,7 @@ def print_rule_result(rule_data, rule_result, brief=True):
         print('{0: <10} {1: <62} {2}'.format(
             rule_data['vuln_id'], rule_data['desc'], rule_result['success']))
     else:
-        print('----------------------------------------------------------')
+        print('----------------------------------------------------------------------')
         print('Vuln ID:     {}'.format(rule_data['vuln_id']))
         print('Severity:    {}'.format(rule_data['severity']))
         print('Description: {}'.format(rule_data['desc']))
@@ -59,7 +59,7 @@ def main(argv):
     input_file = argv[1]
     brief = int(argv[2]) == 1 if len(argv) > 2 else True
     parse = CiscoConfParse(input_file)
-    stig_objs = parse.find_objects('!@#stig:\S+')
+    stig_objs = parse.find_objects(r'!@#stig:\S+')
     stigs = [obj.text.split(':')[1] for obj in stig_objs]
     rule_files = sorted(glob('rules/*.yml'))
     for rule_file in rule_files:

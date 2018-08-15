@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: 802.1x periodic authc every 1 hour (3600 sec)
+check:
+  text: authentication\s+timer\s+reauthenticate\s+3600
+  text_cnt: 1
+  parent: ^interface\s+GigabitEthernet0/[0-9]+$
+  when: switchport\s+mode\s+access
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps

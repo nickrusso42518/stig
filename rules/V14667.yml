@@ -4,7 +4,7 @@ desc: key lifetime 180 days or less (15552000 sec)
 check:
   text: (accept|send)-lifetime.*duration\s+15552000
   text_cnt: 2
-  parent: ^\s*key\s+\d+$
+  parent: ^\s*key\s+100$
   when: true
 part_of_stig:
   - l3ir

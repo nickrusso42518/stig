@@ -7,5 +7,5 @@ check:
   parent: ^interface\s+
   when: ip\s+address\s+\S+
 part_of_stig:
-  - l3ir
+  - l3ps
   - l3pr
