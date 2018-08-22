@@ -1,0 +1,54 @@
+$ python3 stig.py configs/l2as.cfg -v 0
+V14669     BSDr commands disabled                                         PASS
+V14671a    NTP clients must authenticate servers                          PASS
+V14671k    NTP authentication keys must be defined                        PASS
+V14671s    NTP server reference must use the auth keys                    PASS
+V15432     Two AAA servers defined                                        PASS
+V15434     Username set to privilege 0 (V3057 copy)                       PASS
+V18565     Port-security must err-disable violating ports                 N/A
+V23747     must have 2 NTP servers                                        PASS
+V28784     service call-home disabled                                     PASS
+V3012      enable secret must be configured                               PASS
+V3020      DNS lookups disabled                                           PASS
+V3021      SNMPv3 group ACL protection                                    PASS
+V3043      SNMPv3 groups for read access                                  PASS
+V3056      No group accounts (V3966 copy)                                 PASS
+V3057      Username set to privilege 0                                    PASS
+V3058      No authorized usernames allowed (V3966 copy)                   PASS
+V3062      passwords must be encrypted                                    PASS
+V3070      VTY ACL logs all activity                                      PASS
+V3078      TCP/UDP small servers must be disabled                         PASS
+V3079      service finger disabled                                        PASS
+V3085      HTTP server disabled                                           PASS
+V3143      No default username "cisco" or "admin"                         PASS
+V3175      VTY lines must have login authc configured                     PASS
+V3210      Cannot use SNMPv2c strings "public" or "private"               PASS
+V3966      Single username for emergency purposes only                    PASS
+V3967      exec-timeout must be 10 minutes (exactly)                      PASS
+V3969r     SNMP read access only (read present)                           PASS
+V3969w     SNMP read access only (write absent)                           PASS
+V3971      VLAN 1 cannot be used as access vlan                           PASS
+V3972      VLAN 1 pruned from all trunks                                  PASS
+V3973      Unused ports must be placed in unused VLAN 200                 PASS
+V3984      Access ports cannot use native VLAN 100                        PASS
+V4582      console must have login authc configured                       PASS
+V4584      syslog enabled                                                 PASS
+V5611      VTY ACL is applied                                             PASS
+V5612      SSH timeout at 60 seconds (exactly)                            PASS
+V5613      SSH authentication attempts is 3 (retries is 2)                PASS
+V5614      service pad disabled                                           PASS
+V5615      TCP keepalives in/out enabled                                  PASS
+V5622      Native VLAN 100 must be set on all trunks                      PASS
+V5624a     802.1x periodic authc every 1 hour (3600 sec)                  PASS
+V5624b     802.1x periodic authc enabled                                  PASS
+V5624c     802.1x only allow one MAC address                              PASS
+V5626a     802.1x must be enabled globally                                PASS
+V5626b     802.1x must be invoked by AAA (RADIUS)                         PASS
+V5626c     802.1x must be enabled at port level                           PASS
+V5626d     802.1x authenticator port-mode on switch ports                 PASS
+V5628      VLAN 1 cannot be used for mgmt                                 PASS
+V5646      Drop half-open TCP sessions                                    PASS
+extra01    portfast enabled on access ports                               PASS
+extra02    SSH server must support AES-256-CTR cipher                     PASS
+extra03    SSH client must support AES-256-CTR cipher                     PASS
+extra04    ICMP unreachables must be throttled                            PASS

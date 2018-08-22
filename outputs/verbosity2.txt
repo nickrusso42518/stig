@@ -1,0 +1,54 @@
+$ python3 stig.py configs/l2as.cfg -v 2
+V14669,2,BSDr commands disabled,PASS,,,
+V14671a,2,NTP clients must authenticate servers,PASS,ntp authenticate,,
+V14671k,2,NTP authentication keys must be defined,PASS,ntp authentication-key 1 md5 SAMPLE1 0~ntp authentication-key 2 md5 SAMPLE2 0,,
+V14671s,2,NTP server reference must use the auth keys,PASS,ntp server 192.0.2.1 key 1~ntp server 192.0.2.2 key 2,,
+V15432,2,Two AAA servers defined,PASS,tacacs server ISE_APG_6010~radius server ISE_GAITNOC_DETRICK,,
+V15434,2,Username set to privilege 0 (V3057 copy),PASS,username gdadmin privilege 0 password 0 cisco,,
+V18565,3,Port-security must err-disable violating ports,N/A,,,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/3~interface GigabitEthernet0/4
+V23747,3,must have 2 NTP servers,PASS,ntp server 192.0.2.1 key 1~ntp server 192.0.2.2 key 2,,
+V28784,2,service call-home disabled,PASS,,,
+V3012,1,enable secret must be configured,PASS,enable secret cisco,,
+V3020,3,DNS lookups disabled,PASS,no ip domain lookup,,
+V3021,2,SNMPv3 group ACL protection,PASS,snmp-server group TEST v3 read whatever access 100,,
+V3043,2,SNMPv3 groups for read access,PASS,snmp-server group TEST v3 read whatever access 100,,
+V3056,2,No group accounts (V3966 copy),PASS,username gdadmin privilege 0 password 0 cisco,,
+V3057,2,Username set to privilege 0,PASS,username gdadmin privilege 0 password 0 cisco,,
+V3058,2,No authorized usernames allowed (V3966 copy),PASS,username gdadmin privilege 0 password 0 cisco,,
+V3062,1,passwords must be encrypted,PASS,service password-encryption,,
+V3070,3,VTY ACL logs all activity,PASS,ip access-list standard ACL_VTY,,
+V3078,2,TCP/UDP small servers must be disabled,PASS,,,
+V3079,3,service finger disabled,PASS,,,
+V3085,2,HTTP server disabled,PASS,no ip http server,,
+V3143,1,No default username "cisco" or "admin",PASS,,,
+V3175,1,VTY lines must have login authc configured,PASS,line vty 0 4,,
+V3210,1,Cannot use SNMPv2c strings "public" or "private",PASS,,,
+V3966,2,Single username for emergency purposes only,PASS,username gdadmin privilege 0 password 0 cisco,,
+V3967,2,exec-timeout must be 10 minutes (exactly),PASS,line con 0~line vty 0 4,,
+V3969r,2,SNMP read access only (read present),PASS,snmp-server group TEST v3 read whatever access 100,,
+V3969w,2,SNMP read access only (write absent),PASS,,,
+V3971,2,VLAN 1 cannot be used as access vlan,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V3972,3,VLAN 1 pruned from all trunks,PASS,interface GigabitEthernet0/3,,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4
+V3973,3,Unused ports must be placed in unused VLAN 200,PASS,interface GigabitEthernet0/4,,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/3
+V3984,2,Access ports cannot use native VLAN 100,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V4582,1,console must have login authc configured,PASS,line con 0,,
+V4584,3,syslog enabled,PASS,logging host 1.1.1.1,,
+V5611,2,VTY ACL is applied,PASS,line vty 0 4,,
+V5612,2,SSH timeout at 60 seconds (exactly),PASS,ip ssh timeout 60,,
+V5613,2,SSH authentication attempts is 3 (retries is 2),PASS,ip ssh authentication-retries 2,,
+V5614,3,service pad disabled,PASS,no service pad,,
+V5615,3,TCP keepalives in/out enabled,PASS,service tcp-keepalives-in~service tcp-keepalives-out,,
+V5622,2,Native VLAN 100 must be set on all trunks,PASS,,,
+V5624a,2,802.1x periodic authc every 1 hour (3600 sec),PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V5624b,2,802.1x periodic authc enabled,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V5624c,2,802.1x only allow one MAC address,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V5626a,1,802.1x must be enabled globally,PASS,dot1x system-auth-control,,
+V5626b,1,802.1x must be invoked by AAA (RADIUS),PASS,aaa authentication dot1x METHOD2,,
+V5626c,1,802.1x must be enabled at port level,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V5626d,1,802.1x authenticator port-mode on switch ports,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+V5628,2,VLAN 1 cannot be used for mgmt,PASS,interface Vlan1,,
+V5646,2,Drop half-open TCP sessions,PASS,ip tcp synwait-time 10,,
+extra01,n/a,portfast enabled on access ports,PASS,interface GigabitEthernet0/1~interface GigabitEthernet0/2~interface GigabitEthernet0/4,,interface GigabitEthernet0/3
+extra02,n/a,SSH server must support AES-256-CTR cipher,PASS,ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr,,
+extra03,n/a,SSH client must support AES-256-CTR cipher,PASS,ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr,,
+extra04,n/a,ICMP unreachables must be throttled,PASS,,,

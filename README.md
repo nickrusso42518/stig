@@ -1,3 +1,7 @@
+[![Build Status](
+https://travis-ci.org/nickrusso42518/stig.svg?branch=master)](
+https://travis-ci.org/nickrusso42518/stig)
+
 # Lightweight DISA STIG Scanner
 A simple and fast Python script to scan configurations for US Government
 Security Technical Implementation Guidance (STIG) compliance. The
@@ -10,6 +14,7 @@ rulesets for each vulnerability of interest.
 
   * [Supported platforms](#supported-platforms)
   * [Usage](#usage)
+  * [Operation](#operation)
   * [FAQ](#faq)
 
 ## Supported platforms
@@ -33,4 +38,86 @@ The `-v` or `--verbosity` argument determines the output style:
 This argument is __optional__ and when unspecified, `0` is assumed. See the
 `samples/` folder for example outputs of each style.
 
+## Operation
+Each individual rule or sub-rule goes in its own YAML file. Having many
+small files enables simpler searching, editing, adding, and deleting for
+the management of the rule set. Note that some rules as written in the STIG
+specifications may check multiple things. For example `V18633` lists many
+banned tunneling protocols, but it is simpler to break these into separate
+sub-rule files as shown below. This way, if there are only a few missing
+protocols, the entire rule does not fail, and provides a more targeted
+notification for remediation.
+
+```
+# V18633a.yml
+---
+severity: 2
+desc: Deny outdated tunneling protocol IPP 42
+check:
+  text: deny\s+42\s+any\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+
+# V18633b.yml
+---
+severity: 2
+desc: Deny outdated tunneling protocol IPP 93
+check:
+  text: deny\s+93\s+any\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+```
+
+The components of a rule file are described below:
+  * `severity`: The category number of 1, 2, or 3. Documentation only.
+  * `desc`: Summarized explanation of the rule; be succinct.
+  * `check`: Nested dictionary containing the critical parts of the rule
+    * `text`: The regex to search for. Do not quote the string.
+    * `text_cnt`: The number of times to search for `text`. Often times this
+      is set to 1, but could be greater if the regex is generic and looking
+      for many things (e.g. multiple NTP or AAA servers). To test for a
+      configuration item being totally absent, use 0 (e.g. ensure that
+      `ip directed-broadcast` appears zero times under each interface).
+    * `parent`: The regex of the parent under which the `text` regex should
+      be searched. For example, searching for ACL entries under an ACL.
+      Do not quote the string.
+    * `when`: The sibling to `text` that tests for a regex to be present
+      before looking for `text`. For example, only check for `no ip proxy-arp`
+      under an interface if it has an IP address. Set this to `true` to
+      always look for `text`. If `when` is `false` or the regex fails to
+      match, the item is marked "N/A" versus "PASS" or "FAIL".
+      Do not quote the string.
+    * `part_of_stig`: List of strings that indicate when this rule should be
+      evaluated. This string must match the directive at the top of each
+      configuration file to be included. For example, if a rule is part of
+      `l3ps` and `l3pr`, a configuration with __either one__ of these
+      directives will include this rule. The directive string
+      is `!@#stig:stig_name`. See `configs/` for examples.
+
 ## FAQ
+__Q__: Does this tool have the logic to traverse complex dependencies?\
+__A__: No. It applies the `text` regex for each rule based on its position
+in the configuration, either globally or under a `parent` regex. For example,
+embedding blacklist items in an object-group and calling the object-group
+from an access-list will be counted by this tool unless the user defines
+the rules appropriately.
+
+__Q__: Can I add my own rules or change the existing rules?\
+__A__: Yes. There is nothing specific about DISA STIGs for this tool, other
+than some naming conventions (e.g., vuln ID) and design intent. I have
+included several `extra` rules in the `rules/` directory to illustrate
+this point. Users are encouraged to update the rules to fit their
+specific environment; this is not a static, click-button dogmatic tool.
+
+__Q__: Can configurations be part of more than one STIG?\
+__A__: Yes. Use the `!@#stig:stig_name` directive at the top of the file
+as many times as necessary. Ensure the corresponding rules have this
+string in their `part_of_stig` YAML list.

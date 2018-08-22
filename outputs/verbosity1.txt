@@ -1,0 +1,508 @@
+$ python3 stig.py configs/l2as.cfg -v 1
+----------------------------------------------------------------------
+Vuln ID:     V14669
+Severity:    2
+Description: BSDr commands disabled
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V14671a
+Severity:    2
+Description: NTP clients must authenticate servers
+pass objects:
+  - ntp authenticate
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V14671k
+Severity:    2
+Description: NTP authentication keys must be defined
+pass objects:
+  - ntp authentication-key 1 md5 SAMPLE1 0
+  - ntp authentication-key 2 md5 SAMPLE2 0
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V14671s
+Severity:    2
+Description: NTP server reference must use the auth keys
+pass objects:
+  - ntp server 192.0.2.1 key 1
+  - ntp server 192.0.2.2 key 2
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V15432
+Severity:    2
+Description: Two AAA servers defined
+pass objects:
+  - tacacs server ISE_APG_6010
+  - radius server ISE_GAITNOC_DETRICK
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V15434
+Severity:    2
+Description: Username set to privilege 0 (V3057 copy)
+pass objects:
+  - username gdadmin privilege 0 password 0 cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V18565
+Severity:    3
+Description: Port-security must err-disable violating ports
+pass objects:
+fail objects:
+na objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/3
+  - interface GigabitEthernet0/4
+Success:     N/A
+----------------------------------------------------------------------
+Vuln ID:     V23747
+Severity:    3
+Description: must have 2 NTP servers
+pass objects:
+  - ntp server 192.0.2.1 key 1
+  - ntp server 192.0.2.2 key 2
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V28784
+Severity:    2
+Description: service call-home disabled
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3012
+Severity:    1
+Description: enable secret must be configured
+pass objects:
+  - enable secret cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3020
+Severity:    3
+Description: DNS lookups disabled
+pass objects:
+  - no ip domain lookup
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3021
+Severity:    2
+Description: SNMPv3 group ACL protection
+pass objects:
+  - snmp-server group TEST v3 read whatever access 100
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3043
+Severity:    2
+Description: SNMPv3 groups for read access
+pass objects:
+  - snmp-server group TEST v3 read whatever access 100
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3056
+Severity:    2
+Description: No group accounts (V3966 copy)
+pass objects:
+  - username gdadmin privilege 0 password 0 cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3057
+Severity:    2
+Description: Username set to privilege 0
+pass objects:
+  - username gdadmin privilege 0 password 0 cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3058
+Severity:    2
+Description: No authorized usernames allowed (V3966 copy)
+pass objects:
+  - username gdadmin privilege 0 password 0 cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3062
+Severity:    1
+Description: passwords must be encrypted
+pass objects:
+  - service password-encryption
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3070
+Severity:    3
+Description: VTY ACL logs all activity
+pass objects:
+  - ip access-list standard ACL_VTY
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3078
+Severity:    2
+Description: TCP/UDP small servers must be disabled
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3079
+Severity:    3
+Description: service finger disabled
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3085
+Severity:    2
+Description: HTTP server disabled
+pass objects:
+  - no ip http server
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3143
+Severity:    1
+Description: No default username "cisco" or "admin"
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3175
+Severity:    1
+Description: VTY lines must have login authc configured
+pass objects:
+  - line vty 0 4
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3210
+Severity:    1
+Description: Cannot use SNMPv2c strings "public" or "private"
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3966
+Severity:    2
+Description: Single username for emergency purposes only
+pass objects:
+  - username gdadmin privilege 0 password 0 cisco
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3967
+Severity:    2
+Description: exec-timeout must be 10 minutes (exactly)
+pass objects:
+  - line con 0
+  - line vty 0 4
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3969r
+Severity:    2
+Description: SNMP read access only (read present)
+pass objects:
+  - snmp-server group TEST v3 read whatever access 100
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3969w
+Severity:    2
+Description: SNMP read access only (write absent)
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3971
+Severity:    2
+Description: VLAN 1 cannot be used as access vlan
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3972
+Severity:    3
+Description: VLAN 1 pruned from all trunks
+pass objects:
+  - interface GigabitEthernet0/3
+fail objects:
+na objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3973
+Severity:    3
+Description: Unused ports must be placed in unused VLAN 200
+pass objects:
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V3984
+Severity:    2
+Description: Access ports cannot use native VLAN 100
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V4582
+Severity:    1
+Description: console must have login authc configured
+pass objects:
+  - line con 0
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V4584
+Severity:    3
+Description: syslog enabled
+pass objects:
+  - logging host 1.1.1.1
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5611
+Severity:    2
+Description: VTY ACL is applied
+pass objects:
+  - line vty 0 4
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5612
+Severity:    2
+Description: SSH timeout at 60 seconds (exactly)
+pass objects:
+  - ip ssh timeout 60
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5613
+Severity:    2
+Description: SSH authentication attempts is 3 (retries is 2)
+pass objects:
+  - ip ssh authentication-retries 2
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5614
+Severity:    3
+Description: service pad disabled
+pass objects:
+  - no service pad
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5615
+Severity:    3
+Description: TCP keepalives in/out enabled
+pass objects:
+  - service tcp-keepalives-in
+  - service tcp-keepalives-out
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5622
+Severity:    2
+Description: Native VLAN 100 must be set on all trunks
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5624a
+Severity:    2
+Description: 802.1x periodic authc every 1 hour (3600 sec)
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5624b
+Severity:    2
+Description: 802.1x periodic authc enabled
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5624c
+Severity:    2
+Description: 802.1x only allow one MAC address
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5626a
+Severity:    1
+Description: 802.1x must be enabled globally
+pass objects:
+  - dot1x system-auth-control
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5626b
+Severity:    1
+Description: 802.1x must be invoked by AAA (RADIUS)
+pass objects:
+  - aaa authentication dot1x METHOD2
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5626c
+Severity:    1
+Description: 802.1x must be enabled at port level
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5626d
+Severity:    1
+Description: 802.1x authenticator port-mode on switch ports
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5628
+Severity:    2
+Description: VLAN 1 cannot be used for mgmt
+pass objects:
+  - interface Vlan1
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     V5646
+Severity:    2
+Description: Drop half-open TCP sessions
+pass objects:
+  - ip tcp synwait-time 10
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     extra01
+Severity:    n/a
+Description: portfast enabled on access ports
+pass objects:
+  - interface GigabitEthernet0/1
+  - interface GigabitEthernet0/2
+  - interface GigabitEthernet0/4
+fail objects:
+na objects:
+  - interface GigabitEthernet0/3
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     extra02
+Severity:    n/a
+Description: SSH server must support AES-256-CTR cipher
+pass objects:
+  - ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     extra03
+Severity:    n/a
+Description: SSH client must support AES-256-CTR cipher
+pass objects:
+  - ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+fail objects:
+na objects:
+Success:     PASS
+----------------------------------------------------------------------
+Vuln ID:     extra04
+Severity:    n/a
+Description: ICMP unreachables must be throttled
+pass objects:
+fail objects:
+na objects:
+Success:     PASS
