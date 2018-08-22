@@ -1,13 +1,7 @@
 ---
-# Specify the language and versions to avoid issues with Python 2.
-language: "python"
-python:
-  - "3.5"
-  - "3.6"
-
 # Install python packages for ansible and linters.
 install:
-  - "sudo pip install -r requirements.txt"
+  - "sudo pip3 install -r requirements.txt"
 
 # Execute linting (and future unit tests) before running the main STIG tool.
 # If any of these tasks fail, the entire build fails immediately.

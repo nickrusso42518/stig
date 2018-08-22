@@ -18,7 +18,7 @@ echo "Python linting started"
 for f in $(find . -name "*.py"); do
   # Print the filename, then run 'pylint' and 'bandit'
   echo "checking $f"
-  pylint $f
+  python3 -m pylint $f
   # Sum the rc from pylint with the sum
   rc=$((rc + $?))
   bandit $f
