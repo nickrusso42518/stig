@@ -1,0 +1,18 @@
+---
+# Install python packages for ansible and linters.
+install:
+  - "sudo pip install -r requirements.txt"
+
+# Execute linting (and future unit tests) before running the main STIG tool.
+# If any of these tasks fail, the entire build fails immediately.
+before_script:
+  - "./tests/lint.sh"
+
+# Run the script four times, using three explicit verbosities and one
+# default setting just to make sure it doesn't barf exceptions.
+script:
+  - "python stig.py configs/l2as.cfg"
+  - "python stig.py -v 0 configs/l2as.cfg"
+  - "python stig.py -v 1 configs/l3ir.cfg"
+  - "python stig.py -v 2 configs/l3pr.cfg"
+...
