@@ -17,8 +17,8 @@ before_script:
 # Run the script four times, using three explicit verbosities and one
 # default setting just to make sure it doesn't barf exceptions.
 script:
-  - "python stig.py configs/l2as.cfg"
-  - "python stig.py -v 0 configs/l2as.cfg"
-  - "python stig.py -v 1 configs/l3ir.cfg"
-  - "python stig.py -v 2 configs/l3pr.cfg"
+  - "python3 stig.py configs/l2as.cfg"
+  - "python3 stig.py -v 0 configs/l2as.cfg"
+  - "python3 stig.py -v 1 configs/l3ir.cfg"
+  - "python3 stig.py -v 2 configs/l3pr.cfg"
 ...
