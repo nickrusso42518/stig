@@ -10,7 +10,6 @@ install:
 # Execute linting (and future unit tests) before running the main STIG tool.
 # If any of these tasks fail, the entire build fails immediately.
 before_script:
-  - "echo $PATH"
   - "make lint"
 
 # Run the script four times, using three explicit verbosities and one

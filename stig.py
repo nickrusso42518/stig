@@ -1,6 +1,7 @@
 '''
 Filename: stig.py
-Author: Nicholas Russo (nickrus@cisco.com)
+Version: Python 3.6.5
+Author: Nicholas Russo (njrusmc@gmail.com)
 Description: Performs a fast but imperfect scan of Cisco IOS configuration
              files against specific rule sets corresponding to the STIGs
              specified in the file. The tool provides a variety of outputs

@@ -1,3 +1,9 @@
+# File:    Makefile
+# Version: GNU Make 3.81
+# Author:  Nicholas Russo (njrusmc@gmail.com))
+# Purpose: Phony targets used for linting (YAML/Python) and running
+#          the script for some quick testing. Unit tests may be
+#          added in the future. See .travis.yml for invocation.
 .PHONY: lint
 lint:
 	yamllint -s rules/*.yml
