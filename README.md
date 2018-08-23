@@ -21,9 +21,11 @@ rulesets for each vulnerability of interest.
 ## Supported platforms
 Any platform that has a text-based configuration suited for matching
 by regex can be used. The examples in this repository are all based on
-Cisco IOS routers and switches. The support structures are in place
-for other operating systems but the rulesets have not been created
-yet.
+Cisco network devices. The support structures are in place
+for other operating systems as well.
+
+At the time of this writing, Cisco IOS and NXOS configurations are
+supported. Cisco IOS-XR and ASA will be supported in the near future.
 
 ## Usage
 `usage: stig.py [-h] [-v {0,1,2}] [-f] config_file`
