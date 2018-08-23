@@ -15,6 +15,7 @@ rulesets for each vulnerability of interest.
   * [Supported platforms](#supported-platforms)
   * [Usage](#usage)
   * [Operation](#operation)
+  * [Testing](#testing)
   * [FAQ](#faq)
 
 ## Supported platforms
@@ -23,7 +24,7 @@ by regex can be used. The examples in this repository are all based on
 Cisco IOS routers and switches.
 
 ## Usage
-`usage: stig.py [-h] [-v {0,1,2}] config_file`
+`usage: stig.py [-h] [-v {0,1,2}] [-f] config_file`
 
 A `config_file` is a relative path to the configuration file to scan,
 for example `configs/l3pr.cfg`. These files do not have to be in `git`
@@ -37,6 +38,13 @@ The `-v` or `--verbosity` argument determines the output style:
 
 This argument is __optional__ and when unspecified, `0` is assumed. See the
 `samples/` folder for example outputs of each style.
+
+The `-f` or `--failonly` argument enables the user to only print failed
+(out of compliance) rules. This reduces output and is good for on-demand
+testing or automated testing where the pass/NA results are not important.
+This a boolean option and does not take additional parameters. This
+argument is __optional__ and when unspecified, `false` is assumed. All
+test results are printed by default (pass, fail, and NA).
 
 ## Operation
 Each individual rule or sub-rule goes in its own YAML file. Having many
@@ -101,6 +109,17 @@ The components of a rule file are described below:
       `l3ps` and `l3pr`, a configuration with __either one__ of these
       directives will include this rule. The directive string
       is `!@#stig:stig_name`. See `configs/` for examples.
+
+
+## Testing
+A GNU Makefile is used for testing this codebase. There are currently
+two steps:
+  * `lint`: Runs YAML and Python linters, as well as a Python static
+    code analyzer to check fo security flaws.
+  * `run`: Runs the STIG tool itself with a variety of input files at
+    all available verbosities to test proper operation. The default input
+    files should have no failures. If any failures do exist, this step fails.
+    Failures can be STIG rule failures or catastrophic unhandled exceptions.
 
 ## FAQ
 __Q__: Does this tool have the logic to traverse complex dependencies?\

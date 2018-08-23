@@ -7,5 +7,9 @@ check:
   parent: false
   when: true
 part_of_stig:
+  - l3is
+  - l3ps
+  - l2as
   - l3ir
   - l3pr
+...

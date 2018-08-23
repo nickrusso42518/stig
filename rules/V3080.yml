@@ -9,3 +9,7 @@ check:
 part_of_stig:
   - l3ir
   - l3pr
+  - l3is
+  - l3ps
+  - l2as
+...

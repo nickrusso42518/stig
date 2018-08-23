@@ -12,6 +12,7 @@ Description: Performs a fast but imperfect scan of Cisco IOS configuration
 from os import path
 from glob import glob
 import argparse
+import sys
 import yaml
 from ciscoconfparse import CiscoConfParse
 
@@ -119,15 +120,17 @@ def _check_hier(parse, rule):
 def process_args():
     '''
     Process command line arguments using argparse. The positional argument
-    "config_file" is mandatory and specifies the file to scan. There is one
-    optional argument for verbosity that changes the format of the stdout
+    "config_file" is mandatory and specifies the file to scan. There are two
+    optional arguments. --verbosity changes the format of the stdout
     output as the program runs. The default verbosity is 0, the most brief.
+    --failonly is used to reduce output and only print failing rules.
     '''
     parser = argparse.ArgumentParser()
     parser.add_argument('config_file', help='configuration text file to scan',
                         type=str)
     parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
                         help="0 for brief, 1 for details, 2 for CSV rows", default=0)
+    parser.add_argument("-f", "--failonly", help="print failures only", action="store_true")
     return parser.parse_args()
 
 def main():
@@ -149,9 +152,11 @@ def main():
 
     # Find all the rules files and iterate over them
     rule_files = sorted(glob('rules/*.yml'))
+    fail_cnt = 0
     for rule_file in rule_files:
         with open(rule_file, 'r') as stream:
             try:
+                # Load the YAML data from file into memory for processing
                 rule_data = yaml.safe_load(stream)
             except yaml.YAMLError as exc:
                 print(exc)
@@ -163,16 +168,24 @@ def main():
             if not overlap:
                 continue
 
-            # Rather than specify the uvln ID in each vuln file, which
+            # Rather than specify the vuln ID in each vuln file, which
             # is a waste of time, dynamically update the rule data with
             # the vuln file name.
             vuln_str = path.basename(rule_file).split('.')[0]
             rule_data.update({'vuln_id': vuln_str})
 
             # Perform the rule checking and print the output with
-            # the user-supplied verbosity.
+            # the user-supplied verbosity. Always print failing rules,
+            # but only print passing/NA rules when failonly is not set.
             rule_result = check(parse, rule_data)
-            print_rule_result(rule_data, rule_result, verbosity=args.verbosity)
+            if rule_result['success'] == 'FAIL':
+                fail_cnt += 1
+                print_rule_result(rule_data, rule_result, args.verbosity)
+            elif not args.failonly:
+                print_rule_result(rule_data, rule_result, args.verbosity)
+
+    # Provide the number of failed rules back to the invoking process.
+    sys.exit(fail_cnt)
 
 if __name__ == '__main__':
     main()

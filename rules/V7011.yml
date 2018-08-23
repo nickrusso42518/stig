@@ -9,3 +9,4 @@ check:
 part_of_stig:  # switches don't have aux ports
   - l3ir
   - l3pr
+...

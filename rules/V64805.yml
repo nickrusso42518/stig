@@ -7,5 +7,8 @@ check:
   parent: ^interface\s+\S*?Ethernet
   when: true
 part_of_stig:
-  - l3ps
+  - l3ir
   - l3pr
+  - l3is
+  - l3ps
+...

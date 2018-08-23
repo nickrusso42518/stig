@@ -7,5 +7,6 @@ check:
   parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
   when: true
 part_of_stig:
-  - l3ir
+  - l3ps
   - l3pr
+...
