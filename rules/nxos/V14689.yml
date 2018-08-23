@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: Deny unauthorized packets inbound from 127.0.0.0/8
+check:
+  text: deny\s+ip\s+127[.]0[.]0[.]0\s+0[.]0[.]0[.]255\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL_IN
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+...

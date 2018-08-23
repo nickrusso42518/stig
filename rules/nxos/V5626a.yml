@@ -1,0 +1,13 @@
+---
+severity: 1
+desc: feature dot1x must be enabled
+check:
+  text: ^feature\s+dot1x
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps
+...

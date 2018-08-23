@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: Deny L2TP protocol 115
+check:
+  text: deny\s+115\s+any\s+any\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+...

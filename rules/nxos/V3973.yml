@@ -1,0 +1,13 @@
+---
+severity: 3
+desc: Unused ports must be placed in unused VLAN 200
+check:
+  text: switchport\s+access\s+vlan\s+200
+  text_cnt: 1
+  parent: ^interface\s+Ethernet0/[0-9]+$
+  when: ^\s*shutdown$
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps
+...

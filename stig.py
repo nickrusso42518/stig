@@ -150,8 +150,13 @@ def main():
     stig_objs = parse.find_objects(r'!@#stig:\S+')
     stigs = [obj.text.split(':')[1] for obj in stig_objs]
 
+    # Determine the network OS type: ios, xr, nxos, asa
+    # Only the first 'type' directive is honored.
+    os_type_objs = parse.find_objects(r'!@#type:\S+')
+    os_type = os_type_objs[0].text.split(':')[1]
+
     # Find all the rules files and iterate over them
-    rule_files = sorted(glob('rules/*.yml'))
+    rule_files = sorted(glob('rules/{}/*.yml'.format(os_type)))
     fail_cnt = 0
     for rule_file in rule_files:
         with open(rule_file, 'r') as stream:

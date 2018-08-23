@@ -1,0 +1,14 @@
+---
+severity: 3
+desc: Log all ACL denies
+check:
+  text: \s*(?!.*log)deny.*$
+  text_cnt: 0
+  parent: ^ip\s+access-list
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr
+  - l3is
+  - l3ps
+...

@@ -1,0 +1,13 @@
+---
+severity: 3
+desc: VLAN 1 pruned from all trunks
+check:
+  text: switchport\s+trunk\s+allowed\s+vlan\s+1([-,]|$)
+  text_cnt: 0
+  parent: ^interface\s+Ethernet0/[0-9]+$
+  when: switchport\s+mode\s+trunk
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps
+...

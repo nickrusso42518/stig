@@ -1,0 +1,12 @@
+---
+severity: 3
+desc: DHCP disabled
+check:
+  text: ^feature\s+dhcp
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+...

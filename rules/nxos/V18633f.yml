@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: Deny outdated tunneling protocol TCP 1723
+check:
+  text: deny\s+tcp\s+any\s+any\s+eq\s+1723\s+log
+  text_cnt: 1
+  parent: ^ip\s+access-list\s+extended\s+ACL_EXTERNAL
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+...

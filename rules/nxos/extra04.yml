@@ -1,0 +1,15 @@
+---
+severity: n/a
+desc: ICMP unreachables must be throttled
+check:
+  text: no\s+ip\s+icmp\s+rate-limit\s+unreachable
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - l3pr
+  - l3ir
+  - l2as
+  - l3is
+  - l3ps
+...

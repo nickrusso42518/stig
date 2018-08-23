@@ -1,0 +1,12 @@
+---
+severity: 2
+desc: multicast admin boundary configured at perimeter
+check:
+  text: ip\s+pim\s+jp-policy
+  text_cnt: 1
+  parent: ^interface\s+Serial1/0
+  when: ip\s+pim\s+\S+mode$
+part_of_stig:
+  - l3ps
+  - l3pr
+...

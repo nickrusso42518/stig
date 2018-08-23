@@ -1,0 +1,12 @@
+---
+severity: 1
+desc: Unicast RPF enabled on non-loopbacks with IP addresses
+check:
+  text: ip\s+verify\s+unicast\s+source\s+reachable-via\s+rx
+  text_cnt: 1
+  parent: ^interface\s+
+  when: (?!.*255[.]255[.]255[.]255$)(ip\s+address\s+\S+).*
+part_of_stig:
+  - l3ps
+  - l3pr
+...

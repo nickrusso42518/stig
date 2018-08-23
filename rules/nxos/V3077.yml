@@ -1,0 +1,12 @@
+---
+severity: 3
+desc: CDP disabled
+check:
+  text: no\s+cdp\s+enable
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ps
+  - l3pr
+...

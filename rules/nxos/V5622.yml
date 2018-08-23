@@ -1,0 +1,13 @@
+---
+severity: 2
+desc: Native VLAN 100 must be set on all trunks
+check:
+  text: switchport\s+trunk\s+native\s+vlan\s+100
+  text_cnt: 0
+  parent: ^interface\s+Ethernet1/[0-9]+$
+  when: switchport\s+mode\s+trunk
+part_of_stig:
+  - l2as
+  - l3is
+  - l3ps
+...

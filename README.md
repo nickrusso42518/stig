@@ -21,7 +21,9 @@ rulesets for each vulnerability of interest.
 ## Supported platforms
 Any platform that has a text-based configuration suited for matching
 by regex can be used. The examples in this repository are all based on
-Cisco IOS routers and switches.
+Cisco IOS routers and switches. The support structures are in place
+for other operating systems but the rulesets have not been created
+yet.
 
 ## Usage
 `usage: stig.py [-h] [-v {0,1,2}] [-f] config_file`
@@ -84,6 +86,12 @@ part_of_stig:
   - l3pr
 ```
 
+Different operating systems will have different CLI syntax for the same
+features, so separate rulesets are needed per OS. In the `rules/` directory,
+there is a subdirectory for each OS, such as `ios`, `xr`, `asa`, and `nxos`.
+Each configuration file must contain a `!@#type:type_name` directive at
+the top of the file to indicate what the OS is.
+
 The components of a rule file are described below:
   * `severity`: The category number of 1, 2, or 3. Documentation only.
   * `desc`: Summarized explanation of the rule; be succinct.
@@ -109,7 +117,6 @@ The components of a rule file are described below:
       `l3ps` and `l3pr`, a configuration with __either one__ of these
       directives will include this rule. The directive string
       is `!@#stig:stig_name`. See `configs/` for examples.
-
 
 ## Testing
 A GNU Makefile is used for testing this codebase. There are currently

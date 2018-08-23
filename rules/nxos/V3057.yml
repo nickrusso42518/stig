@@ -1,0 +1,15 @@
+---
+severity: 2
+desc: Username set to privilege 0
+check:
+  text: ^username.*?role\s+network-admin
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3ir
+  - l3pr
+  - l3is
+  - l3ps
+  - l2as
+...
