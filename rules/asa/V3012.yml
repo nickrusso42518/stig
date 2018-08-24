@@ -1,0 +1,11 @@
+---
+severity: 1
+desc: enable password must be configured
+check:
+  text: ^enable\s+password\s+\S+
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Mgmt connection timeout - ssh 60 sec
+check:
+  text: ^ssh\s+timeout\s+1
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

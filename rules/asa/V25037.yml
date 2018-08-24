@@ -1,0 +1,12 @@
+---
+severity: 1
+desc: Prevent DNS cache poisoning via PAT bugs
+check:
+  text: ^version\s+1[56]
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - l3pr
+  - l3ps
+...

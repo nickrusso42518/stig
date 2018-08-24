@@ -20,7 +20,14 @@ run:
 	@echo "Starting  runs"
 	python3 stig.py -f configs/ios_l2as.cfg
 	python3 stig.py -f configs/nxos_l3pr.cfg
+	python3 stig.py -f configs/asa_fw.cfg
 	python3 stig.py -f -v 0 configs/nxos_l2as.cfg
 	python3 stig.py -f -v 1 configs/ios_l3ir.cfg
 	python3 stig.py -f -v 2 configs/ios_l3pr.cfg
 	@echo "Completed runs"
+
+.PHONY: dev
+dev:
+	@echo "Starting  dev tests"
+	python3 stig.py -f -v 1 configs/asa_fw.cfg
+	@echo "Completed dev tests"

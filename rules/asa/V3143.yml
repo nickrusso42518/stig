@@ -1,0 +1,11 @@
+---
+severity: 1
+desc: No default username "cisco" or "admin"
+check:
+  text: ^username\s+(admin|cisco)
+  text_cnt: 0
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

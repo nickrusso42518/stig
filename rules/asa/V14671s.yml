@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: NTP server reference must use the auth keys
+check:
+  text: ntp\s+server.*?key
+  text_cnt: 2
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

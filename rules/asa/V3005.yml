@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: Protect LAN addresses from public (inside,outside)
+check:
+  text: ^nat\s+\(inside,outside\)
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

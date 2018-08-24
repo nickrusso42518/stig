@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: IPsec tunnels must use tunnel mode
+check:
+  text: mode\s+tunnel
+  text_cnt: 1
+  parent: crypto\s+ipsec\s+transform-set
+  when: true
+part_of_stig:
+  - fw
+...

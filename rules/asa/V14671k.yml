@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: NTP authentication keys must be defined
+check:
+  text: ntp\s+authentication-key
+  text_cnt: 2
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

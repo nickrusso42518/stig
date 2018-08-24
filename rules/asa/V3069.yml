@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Mgmt connection secure - FIPS 140-2
+check:
+  text: ^ssh\s+key-exchange\s+group\s+dh-group1-sha1
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

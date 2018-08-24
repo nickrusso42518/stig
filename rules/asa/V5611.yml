@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: mgmt connection IP restriction (ifname MGMT)
+check:
+  text: ^ssh\s+\d+\.\d+\.\d+\.\d+\s+\d+\.\d+\.\d+\.\d+\s+MGMT
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

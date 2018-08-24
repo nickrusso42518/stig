@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: Logs must be timestamped
+check:
+  text: ^logging\s+timestamp
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...
