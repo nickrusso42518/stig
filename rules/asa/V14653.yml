@@ -1,6 +1,6 @@
 ---
-severity: 1
-desc: Critical alert logging (informational)
+severity: 3
+desc: Audit record display violation (buffered info)
 check:
   text: logging\s+buffered\s+informational
   text_cnt: 1

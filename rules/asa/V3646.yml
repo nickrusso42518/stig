@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: Drop TCP half-open sessions (CMAP_MPF_MGMT)
+check:
+  text: set\s+connection\s+timeout\s+embryonic
+  text_cnt: 1
+  parent: class\s+CMAP_MPF_MGMT$
+  when: true
+part_of_stig:
+  - fw
+...

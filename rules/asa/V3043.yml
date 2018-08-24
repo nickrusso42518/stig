@@ -1,6 +1,6 @@
 ---
 severity: 2
-desc: Read-only SNMP access
+desc: SNMPv3 privileged access
 check:
   text: snmp-server\s+group\s+\S+?\s+v3\s+priv
   text_cnt: 1

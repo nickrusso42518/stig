@@ -1,8 +1,8 @@
 ---
 severity: 1
-desc: Critical alert logging (informational)
+desc: Authc needed for SSH  access
 check:
-  text: logging\s+buffered\s+informational
+  text: ^aaa\s+authentication.*?ssh
   text_cnt: 1
   parent: false
   when: true

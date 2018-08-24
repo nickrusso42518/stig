@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: FW not configured to protect network (V14643 copy)
+check:
+  text: ^access-group\s+\S+\s+in\s+interface\s+OUTSIDE
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

@@ -1,0 +1,11 @@
+---
+severity: 3
+desc: Admins will be logged (logging host MGMT)
+check:
+  text: ^logging\s+host\s+MGMT
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

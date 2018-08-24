@@ -1,6 +1,6 @@
 ---
-severity: 1
-desc: Prevent DNS cache poisoning via PAT bugs
+severity: 2
+desc: Must be running STIG'd OS
 check:
   text: ^ASA\s+Version\s+9.[3-9]
   text_cnt: 1
