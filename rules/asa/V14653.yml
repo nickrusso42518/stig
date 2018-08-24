@@ -1,8 +1,8 @@
 ---
 severity: 3
-desc: Audit record display violation (buffered info)
+desc: Audit record display violation (logging trap)
 check:
-  text: logging\s+buffered\s+informational
+  text: logging\s+trap\s+informational
   text_cnt: 1
   parent: false
   when: true

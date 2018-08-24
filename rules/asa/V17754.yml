@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: mgmt traffic must be restricted (V5611 copy)
+check:
+  text: ^ssh\s+\d+\.\d+\.\d+\.\d+\s+\d+\.\d+\.\d+\.\d+\s+MGMT
+  text_cnt: 1
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

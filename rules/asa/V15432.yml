@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: AAA servers must be used (RADIUS or TACACS)
+check:
+  text: ^aaa-server\s+\S+\s+protocol\s+(radius|tacacs)$
+  text_cnt: 2
+  parent: false
+  when: true
+part_of_stig:
+  - fw
+...

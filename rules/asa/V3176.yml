@@ -1,8 +1,8 @@
 ---
 severity: 2
-desc: Critical alert logging (informational)
+desc: FW not configured to send logs (V14653 copy)
 check:
-  text: logging\s+buffered\s+informational
+  text: logging\s+trap\s+informational
   text_cnt: 1
   parent: false
   when: true

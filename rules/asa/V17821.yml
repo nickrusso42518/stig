@@ -1,0 +1,11 @@
+---
+severity: 2
+desc: mgmt interface not configured properly
+check:
+  text: management-only
+  text_cnt: 1
+  parent: ^interface\s+Management
+  when: true
+part_of_stig:
+  - fw
+...

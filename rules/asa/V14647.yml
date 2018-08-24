@@ -1,6 +1,6 @@
 ---
 severity: 2
-desc: Critical alert logging (informational)
+desc: FW log dump procedures (V14648 copy)
 check:
   text: logging\s+buffered\s+informational
   text_cnt: 1
