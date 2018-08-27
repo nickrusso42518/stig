@@ -1,11 +1,12 @@
 ---
 severity: 2
-desc: N/A test
+desc: IPv6 routing header drop (IPv6 not running)
 check:
   text: bogustext
   text_cnt: 1
-  parent: call-home
+  parent: ^line\s+con
   when: bogustext
 part_of_stig:
-  - fw
+  - l3pr
+  - l3ps
 ...

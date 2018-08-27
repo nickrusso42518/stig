@@ -1,0 +1,14 @@
+---
+severity: 2
+desc: IPv6 no site local addressing (IPv6 not running)
+check:
+  text: bogustext
+  text_cnt: 1
+  parent: ^line\s+con
+  when: bogustext
+part_of_stig:
+  - l3pr
+  - l3ps
+  - l3is
+  - l3is
+...
