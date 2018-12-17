@@ -2,6 +2,10 @@
 https://travis-ci.org/nickrusso42518/stig.svg?branch=master)](
 https://travis-ci.org/nickrusso42518/stig)
 
+[![published](
+http://cs.co/codeex-badge)](
+https://developer.cisco.com/codeexchange/github/repo/nickrusso42518/stig)
+
 # Lightweight DISA STIG Scanner
 A simple and fast Python script to scan configurations for US Government
 Security Technical Implementation Guidance (STIG) compliance. The
