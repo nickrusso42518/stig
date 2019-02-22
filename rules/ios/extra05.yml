@@ -1,6 +1,6 @@
 ---
 severity: n/a
-desc: UDP based Network Disk (nd) must be discabled
+desc: UDP based Network Disk (nd) must be disabled
 check:
   text: ^no\s+ip\s+forward-protocol\s+nd
   text_cnt: 1

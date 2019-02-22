@@ -5,7 +5,7 @@ python:
 
 # Install python packages for ansible and linters.
 install:
-  - "pip install -r requirements.txt"
+  - "make install"
 
 # Execute linting (and future unit tests) before running the main STIG tool.
 # If any of these tasks fail, the entire build fails immediately.
