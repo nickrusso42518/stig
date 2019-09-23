@@ -2,3 +2,4 @@ bandit
 pylint
 yamllint
 ciscoconfparse
+black
