@@ -1,0 +1,20 @@
+---
+severity: 2
+desc: ICMP mask reply must be disabled on all interfaces
+check:
+  - text: ip\s+mask-reply
+    text_cnt: 0
+    parent: ^interface\s+
+    when: ip\s+address\s+\S+
+  - text: no\s+ip\s+redirects
+    text_cnt: 1
+    parent: ^interface.*?Ethernet
+    when: ip\s+address\s+\S+
+  - text: no\s+ip\s+unreachables
+    text_cnt: 1
+    parent: ^interface.*?Ethernet
+    when: ip\s+address\s+\S+
+part_of_stig:
+  - l3ps
+  - l3pr
+...

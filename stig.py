@@ -53,9 +53,42 @@ def check(parse, rule):
     Wrapper function that determines whether the text to check has
     parents (hierarchical check) or has no parents (global check).
     '''
-    if rule['check']['parent']:
-        return _check_hier(parse, rule)
-    return _check_global(parse, rule)
+    results = []
+    for item in rule['check']:
+        if item['parent']:
+            results.append(_check_hier(parse, item))
+        else:
+            results.append(_check_global(parse, item))
+
+    pass_objs = []
+    fail_objs = []
+    failed = False
+    passed = False
+    for result in results:
+
+        # At least one failure --> FAIL
+        if result['success'] == 'FAIL':
+            failed = True
+
+        # Otherwise, at least one pass --> PASS
+        elif not failed and result['success'] == 'PASS':
+            passed = True
+
+        pass_objs.extend(result['iter']['pass'])
+        fail_objs.extend(result['iter']['fail'])
+
+    if failed:
+        success = 'FAIL'
+    elif passed:
+        success = 'PASS'
+    else:
+        success = 'NA'
+
+    pass_objs = list(set(pass_objs))
+    fail_objs = list(set(fail_objs))
+
+    return {'success': success, 'iter': {'pass': pass_objs, 'fail': fail_objs, 'na': []}}
+
 
 def _check_global(parse, rule):
     '''
@@ -67,8 +100,9 @@ def _check_global(parse, rule):
 
     Note that the "when" condition is never evaluated here.
     '''
-    objs = parse.find_objects(rule['check']['text'])
-    if len(objs) == rule['check']['text_cnt']:
+    objs = parse.find_objects(rule['text'])
+
+    if len(objs) == rule['text_cnt']:
         success = 'PASS'
         pass_objs = objs
         fail_objs = []
@@ -96,13 +130,13 @@ def _check_hier(parse, rule):
     pass_objs = []
     fail_objs = []
     na_objs = []
-    parents = parse.find_objects(rule['check']['parent'])
+    parents = parse.find_objects(rule['parent'])
 
     for parent in parents:
-        when = isinstance(rule['check']['when'], bool) and rule['check']['when']
-        if when or parent.re_search_children(rule['check']['when']):
-            search = parent.re_search_children(rule['check']['text'])
-            if len(search) == rule['check']['text_cnt']:
+        when = isinstance(rule['when'], bool) and rule['when']
+        if when or parent.re_search_children(rule['when']):
+            search = parent.re_search_children(rule['text'])
+            if len(search) == rule['text_cnt']:
                 pass_objs.append(parent)
             else:
                 fail_objs.append(parent)
